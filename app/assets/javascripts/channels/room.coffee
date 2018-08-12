@@ -7,8 +7,9 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     # Called when the subscription has been terminated by the server - default
 
   received: (data) ->
-    alert(data['message'])
+    $('#messages').append data['message']
     # Called when there's incoming data on the websocket for this channel - default
+    # we are appending received message to the #messages element in dom to display messages
 
   # speak method sends a message to the server
   speak: (message) ->

@@ -13,8 +13,6 @@ class RoomChannel < ApplicationCable::Channel
 
   # custom method to receive data from client side
   def speak(data)
-
-    # we are broadcasting received messages to the room_channel
-    ActionCable.server.broadcast 'room_channel', message: data['message']
+    Message.create! content: data['message']
   end
 end
