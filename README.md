@@ -6,6 +6,6 @@
 3. `room.coffee` creates subscription to the `RoomChannel` websocket channel
 4. It also creates handler for sending new messages which triggers `this.perform` sending `speak` message with the content
 5. Upon receiving `speak` message, server creates `Message` entity in the database with appended content
-6. `after_create_commit` on `Message` model enqueues `MessageBroadcastJob`
+6. `after_create_commit` on `Message` model enqueues a `MessageBroadcastJob`
 7. Upon performing the job, it broadcasts the received message, using `_message` partial, to the `room_channel`
 8. `room.coffee` code handles the received data by invoking `received` handler and appending the message to the DOM
